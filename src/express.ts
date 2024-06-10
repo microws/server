@@ -334,7 +334,7 @@ export function handleHtmlRequest({
       if (req.url.match(/api/) || req.url.match(/media/) || req.url.match(/static/)) return next();
       let myVersions = await getModuleVersions(app, res.locals.evidentlyConfig);
       let htmlName = app.toLowerCase() + "-html";
-      let htmlHashCode = myVersions.get(htmlName).hash;
+      let htmlHashCode = myVersions.get(htmlName)?.hash;
       let html = res.locals.html || (await htmlCache(`static/${htmlName}-${htmlHashCode}.html`));
 
       html = html
